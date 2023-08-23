@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import joblib
+from flask_cors import CORS
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
@@ -9,6 +10,8 @@ loaded_rf = joblib.load(model_filename)
 
 # Create a Flask app
 app = Flask(__name__)
+CORS(app)
+CORS(app, origins=['http://localhost:3000'])
 
 # Define a route for the `/predict` endpoint
 @app.route('/predict', methods=['POST'])
